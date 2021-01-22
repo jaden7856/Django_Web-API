@@ -1,19 +1,29 @@
-<a href="{% url 'blog:post_list' %}">List</a>
-<h2>{{ object.title }}</h2>
+{% extends "base.html" %}
 
-<!-- previous or next post link -->
-<p class="other_posts">
-    <a href="{{ object.get_previous_post.get_absolute_url }}">{{ object.get_previous_post }}</a>
+{% block title %}Blog Detail{% endblock %}
 
-    <a href="{{ object.get_next_post.get_absolute_url }}">{{ object.get_next_post }}</a>
-</p>
-<div
-<!-- date -->
-<p class="date">
-    {{ object.modify_date|date:"Y-m-d H:i" }}
-</p>
-<br/>
-<!-- post content -->
-<div class="body">
-    {{ object.content|linebreaks }}
+{% block content %}
+<div id="content">
+    <a href="{% url 'blog:post_list' %}">List</a>
+    <h2>{{ object.title }}</h2>
+
+    <!-- previous or next post link -->
+    <p class="other_posts">
+        <a href="{{ object.get_previous_post.get_absolute_url }}">{{ object.get_previous_post }}</a>
+
+        <a href="{{ object.get_next_post.get_absolute_url }}">{{ object.get_next_post }}</a>
+    </p>
+    <br/>
+    <div
+    <!-- date -->
+        <p class="date">
+            {{ object.modify_date|date:"Y-m-d H:i" }}
+        </p>
+    </div>
+
+    <!-- post content -->
+    <div class="body">
+        {{ object.content|linebreaks }}
+    </div>
 </div>
+{% endblock %}

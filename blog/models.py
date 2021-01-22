@@ -3,6 +3,8 @@ from django.urls import reverse
 
 # Create your models here.
 class Post(models.Model):
+    objects = models.Manager()
+    
     title = models.CharField('TITLE', max_length=50)
     slug = models.SlugField('SLUG', unique=True, allow_unicode=True, help_text='one word for this alias')
     description = models.CharField('DESCRIPTION', max_length=100, blank=True, help_text='simple description text')
